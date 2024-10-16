@@ -361,7 +361,25 @@ typedef void (*PendedFunction_t)( void *, uint32_t );
 										void * const pvTimerID,
 										TimerCallbackFunction_t pxCallbackFunction,
 										StaticTimer_t *pxTimerBuffer ) PRIVILEGED_FUNCTION;
-#endif /* configSUPPORT_STATIC_ALLOCATION */
+
+/**
+ * task.h
+ * @code{c}
+ * void vApplicationGetTimerTaskMemory( StaticTask_t ** ppxTimerTaskTCBBuffer, StackType_t ** ppxTimerTaskStackBuffer, configSTACK_DEPTH_TYPE * puxTimerTaskStackSize )
+ * @endcode
+ *
+ * This function is used to provide a statically allocated block of memory to FreeRTOS to hold the Timer Task TCB.  This function is required when
+ * configSUPPORT_STATIC_ALLOCATION is set.  For more information see this URI: https://www.FreeRTOS.org/a00110.html#configSUPPORT_STATIC_ALLOCATION
+ *
+ * @param ppxTimerTaskTCBBuffer   A handle to a statically allocated TCB buffer
+ * @param ppxTimerTaskStackBuffer A handle to a statically allocated Stack buffer for the idle task
+ * @param puxTimerTaskStackSize   A pointer to the number of elements that will fit in the allocated stack buffer
+ */
+    void vApplicationGetTimerTaskMemory( StaticTask_t ** ppxTimerTaskTCBBuffer,
+                                         StackType_t ** ppxTimerTaskStackBuffer,
+                                         configSTACK_DEPTH_TYPE * puxTimerTaskStackSize );
+
+#endif
 
 /**
  * void *pvTimerGetTimerID( TimerHandle_t xTimer );

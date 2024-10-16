@@ -42,6 +42,7 @@
 /* Defining MPU_WRAPPERS_INCLUDED_FROM_API_FILE prevents task.h from redefining
 all the API functions to use the MPU wrappers.  That should only be done when
 task.h is included from an application file. */
+#if( configSUPPORT_DYNAMIC_ALLOCATION == 1 )
 #define MPU_WRAPPERS_INCLUDED_FROM_API_FILE
 
 #include "FreeRTOS.h"
@@ -49,9 +50,6 @@ task.h is included from an application file. */
 
 #undef MPU_WRAPPERS_INCLUDED_FROM_API_FILE
 
-#if( configSUPPORT_DYNAMIC_ALLOCATION == 0 )
-	#error This file must not be used if configSUPPORT_DYNAMIC_ALLOCATION is 0
-#endif
 
 /*-----------------------------------------------------------*/
 
@@ -94,4 +92,7 @@ void vPortFree( void *pv )
 }
 
 
+#else
 
+#warning This file must not be used if configSUPPORT_DYNAMIC_ALLOCATION is 0
+#endif

@@ -442,6 +442,23 @@ is used in assert() statements. */
 									UBaseType_t uxPriority,
 									StackType_t * const puxStackBuffer,
 									StaticTask_t * const pxTaskBuffer ) PRIVILEGED_FUNCTION;
+/**
+ * task.h
+ * @code{c}
+ * void vApplicationGetIdleTaskMemory( StaticTask_t ** ppxIdleTaskTCBBuffer, StackType_t ** ppxIdleTaskStackBuffer, configSTACK_DEPTH_TYPE * puxIdleTaskStackSize )
+ * @endcode
+ *
+ * This function is used to provide a statically allocated block of memory to FreeRTOS to hold the Idle Task TCB.  This function is required when
+ * configSUPPORT_STATIC_ALLOCATION is set.  For more information see this URI: https://www.FreeRTOS.org/a00110.html#configSUPPORT_STATIC_ALLOCATION
+ *
+ * @param ppxIdleTaskTCBBuffer A handle to a statically allocated TCB buffer
+ * @param ppxIdleTaskStackBuffer A handle to a statically allocated Stack buffer for the idle task
+ * @param puxIdleTaskStackSize A pointer to the number of elements that will fit in the allocated stack buffer
+ */
+    void vApplicationGetIdleTaskMemory( StaticTask_t ** ppxIdleTaskTCBBuffer,
+                                        StackType_t ** ppxIdleTaskStackBuffer,
+                                        configSTACK_DEPTH_TYPE * puxIdleTaskStackSize );
+
 #endif /* configSUPPORT_STATIC_ALLOCATION */
 
 /**

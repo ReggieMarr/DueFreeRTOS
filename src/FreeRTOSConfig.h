@@ -75,6 +75,14 @@
 #define configUSE_COUNTING_SEMAPHORES         1
 #define configUSE_QUEUE_SETS                  1
 #define configGENERATE_RUN_TIME_STATS         0
+#define configSUPPORT_DYNAMIC_ALLOCATION      0
+
+/*
+  Required to run the example csp server application and resolve this error:
+  libcsp/libcsp.a(csp_queue.c.o): In function `csp_queue_create_static':
+  /home/user/libcsp/src/arch/freertos/csp_queue.c:10: undefined reference to `xQueueCreateStatic'
+ */
+#define configSUPPORT_STATIC_ALLOCATION       1
 
 /* Co-routine definitions. */
 #define configUSE_CO_ROUTINES                 0
